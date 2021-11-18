@@ -1,0 +1,30 @@
+[
+    {
+        "city": "Stockholm",
+        "parking_zones": [
+                {
+                    "name": "zone1",
+                    "lat": 59.291926,
+                    "long": 18.094902
+                },
+                {
+                    "name": "zone2",
+                    "lat": 59.271926,
+                    "long": 18.092982
+                }
+        ],
+        "amount_of_bikes": "596",
+        "charging_posts":  [
+                {
+                    "name": "post1",
+                    "lat": 59.286926,
+                    "long": 18.094902
+                },
+                {
+                    "name": "post2",
+                    "lat": 59.31199953287714,
+                    "long": 18.095574998963336
+                }
+        ]
+    }
+]

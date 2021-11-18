@@ -1,10 +1,11 @@
 {
   "expo": {
     "name": "pattern_app",
-    "slug": "pattern_app",
+    "slug": "pattern-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "patternapp",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,13 +18,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jontepson.pattern"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.jontepson.pattern"
     },
     "web": {
       "favicon": "./assets/favicon.png"
