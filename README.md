@@ -1,6 +1,6 @@
 ## APP for pattern
 
-# Projektet kan testas på https://expo.dev/@jontepson/pattern-app 
+## Projektet kan testas på https://expo.dev/@jontepson/pattern-app 
 
 # Detta projekt innehåller en config.json fil i src/config/
 

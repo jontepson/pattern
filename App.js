@@ -13,8 +13,10 @@ import {
   LoggedInScreen,
   MapScreen,
   DriveScreen,
-  MapScreen2
+  MapScreen2,
+  SettingsScreen
 } from './src/screens'
+
 
 const Stack = createStackNavigator()
 
@@ -34,6 +36,7 @@ export default function App() {
           <Stack.Screen name="MapScreen" component={MapScreen} />
           <Stack.Screen name="DriveScreen" component={DriveScreen} />
           <Stack.Screen name="MapScreen2" component={MapScreen2} />
+          <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
   )

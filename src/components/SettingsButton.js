@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, Image, StyleSheet, View } from 'react-native'
+import { TouchableOpacity, Image, StyleSheet } from 'react-native'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
 export default function SettingsButton({ goBack }) {
   return (

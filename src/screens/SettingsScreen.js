@@ -1,5 +1,5 @@
 /**
- * Module for LoggedInScreen
+ * Module for SettingsScreen
  * Needs params for active user and ?token?
  */
 import React from 'react'
@@ -9,7 +9,7 @@ import Logo from '../components/Logo'
 import Button from '../components/Button'
 import Footer from '../components/Footer';
 
-export default function LoggedInScreen({ route, navigation }) {
+export default function SettingsScreen({ route, navigation }) {
   let user;
   let token;
   try {

@@ -15,29 +15,25 @@ export default function StartScreen({ navigation }) {
   return (
     <Background>
       <Logo />
-      
+
       <Button
         mode="contained"
         onPress={() => navigation.navigate('LoginScreen')}
       >
         Logga in
       </Button>
-      
+
       <Button
         mode="contained"
-        onPress={() => navigation.navigate('LoggedInScreen', { token: "none",
-          user: 'tester' })}
+        onPress={() => navigation.navigate('SettingsScreen', {
+          token: "none",
+          user: 'tester'
+        })}
       >
         Fortsätt utan att logga in
       </Button>
-      
+
       <Footer />
     </Background>
   )
 }
-
-const styles = StyleSheet.create({
-  footer: {
-    position: 'absolute', left: 0, right: 0, bottom: 10, textAlign: 'center'
-  }
-})

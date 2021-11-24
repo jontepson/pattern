@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">45.45% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/10</span>
+                <span class='fraction'>5/11</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>1/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">45.45% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/10</span>
+                <span class='fraction'>5/11</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -116,9 +116,7 @@
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,7 +161,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -182,22 +180,21 @@
  * Needs params for active user and ?token?
  */
 import React from 'react'
+import { Linking } from 'react-native'
 import Background from '../components/Background'
 import Logo from '../components/Logo'
-import Header from '../components/Header'
 import Button from '../components/Button'
-import Paragraph from '../components/Paragraph'
-import BackButton from '../components/BackButton'
 import Footer from '../components/Footer';
+&nbsp;
 export default function LoggedInScreen({ route, navigation }) {
   let user;
-  let data;
+  let token;
   try {
     user = route.params.user;
-<span class="cstat-no" title="statement not covered" >    data = route.params.user;</span>
+<span class="cstat-no" title="statement not covered" >    token = route.params.token;</span>
   } catch (error) {
     user = "tester";
-    data = "tester"; 
+    token = "tester";
   }
   return (
     &lt;Background&gt;
@@ -211,27 +208,27 @@ export default function LoggedInScreen({ route, navigation }) {
       &lt;Button
         mode="contained"
         onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigation.navigate('MapScreen')}</span>
-        &gt;
+      &gt;
         Karta 1
       &lt;/Button&gt;
       &lt;Button
         mode="contained"
         onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigation.navigate('MapScreen2')}</span>
-        &gt;
+      &gt;
         Karta 2
       &lt;/Button&gt;
-       {/*
+&nbsp;
       &lt;Button
         mode="contained"
-        onPress={() =&gt; navigation.navigate('DriveScreen', { data: data, user: user})}
-        &gt;
-        Drive
+        onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >Linking.openURL('https://google.com')}</span>
+      &gt;
+        Mina sidor
       &lt;/Button&gt;
-       */}
+&nbsp;
       &lt;Button
         mode="contained"
         onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigation.navigate('StartScreen')}</span>
-        &gt;
+      &gt;
         Logga ut
       &lt;/Button&gt;
       &lt;Footer /&gt;
@@ -244,7 +241,7 @@ export default function LoggedInScreen({ route, navigation }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Nov 17 2021 16:58:52 GMT+0100 (centraleuropeisk normaltid)
+                at Wed Nov 24 2021 09:45:26 GMT+0100 (centraleuropeisk normaltid)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

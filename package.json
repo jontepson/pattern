@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint src/"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -43,18 +44,21 @@
     "react-native-screens": "~2.15.2",
     "react-native-status-bar-height": "^2.6.0",
     "react-native-svg": "^12.1.1",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "expo-location": "~10.0.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
     "babel-eslint": "^10.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.15.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.2.0",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react": "^7.27.1",
     "jest-expo": "^43.0.1",
     "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.2"

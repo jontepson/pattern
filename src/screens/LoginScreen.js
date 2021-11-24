@@ -26,70 +26,78 @@ const discovery = {
 
 WebBrowser.maybeCompleteAuthSession();
 export default function LoginScreen({ navigation }) {
-    /**
-     * 
-     */
-        const [request, response, promptAsync] = useAuthRequest(
-            {
-              clientId: config.clientId,
-              scopes: ['identity'],
-              redirectUri: makeRedirectUri({ useProxy: false })
-            },
-            discovery
-          );
-          /**
-           * Do some check if user is in register or not. 
-           * 
-           */
-          React.useEffect(() => {
-            if (response?.type) {
-              console.log(response)
-              console.log(makeRedirectUri({ useProxy: false }))
-            }
-            if (response?.type === 'success') {
-              const { code } = response.params;
-              const body = {
-                client_id: config.clientId, 
-                client_secret: config.clientSecret,
-                code: code, 
-              }
-              
-              const url = "https://github.com/login/oauth/access_token";
-              fetch(url, {
-                method: "POST",
+  /**
+   * 
+   */
+  useEffect(() => {
+    WebBrowser.warmUpAsync();
+
+    return () => {
+      WebBrowser.coolDownAsync();
+    };
+  }, [])
+  if (process.env.NODE_ENV !== "test") {
+    const [request, response, promptAsync] = useAuthRequest(
+      {
+        clientId: config.clientId,
+        scopes: ['identity'],
+        redirectUri: makeRedirectUri({ useProxy: false })
+      },
+      discovery
+    );
+
+    useEffect(() => {
+      if (response?.type === 'success') {
+        const { code } = response.params;
+        const body = {
+          client_id: config.clientId,
+          client_secret: config.clientSecret,
+          code: code,
+        }
+  
+        const url = "https://github.com/login/oauth/access_token";
+        fetch(url, {
+          method: "POST",
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        }).then((response) => response.json())
+          .then((data) => {
+            if (data.access_token) {
+              const authUrl = "https://api.github.com/user";
+              fetch(authUrl, {
+                method: "GET",
                 headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-              }).then((response) => response.json())
-              .then((data) => {
-                if (data.access_token) {
-                const token = data.access_token
-                const authUrl = "https://api.github.com/user";
-                  fetch(authUrl, {
-                    method: "GET",
-                    headers: {
-                      Authorization: "token " + data.access_token
-                  }}).then((response) => response.json())
-                  .then((data) => {
-                    console.log(data)
-                    //createUser(data.login, data.id)
-                  
-                    navigation.navigate('MapScreen2', { token: token, user: data.login})
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  })
-                } else {
-                  alert("Något gick fel med inloggningen")
+                  Authorization: "token " + data.access_token
                 }
-              })
-              .catch((error) => {
-                console.error(error);
-              });
-              }
-          }, [response]);
+              }).then((response) => response.json())
+                .then((data) => {
+                  
+                  //createUser(data.login, data.id)
+  
+                  navigation.navigate('MapScreen2', { user: data.login })
+                })
+                .catch((error) => {
+                  console.error(error);
+                })
+            } else {
+              alert("Något gick fel med inloggningen")
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    }, [response]);
+  
+  }
+  
+  /**
+   * Do some check if user is in register or not. 
+   * 
+ */
   
   /**
    * 
@@ -106,27 +114,27 @@ export default function LoginScreen({ navigation }) {
     fetch(server + createUserEndpoint, {
       method: "POST",
       body: JSON.stringify(body)
-      }).then((response) => response.json())
-    .then((data) => {
-      console.log(data)
-      
-    }).then(() => {
-      // redirect till loggedInScreen och skicka med token eller username eller hur vi ska göra med det.
-      navigation.navigate('LoggedInScreen')
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+
+      }).then(() => {
+        // redirect till loggedInScreen och skicka med token eller username eller hur vi ska göra med det.
+        navigation.navigate('LoggedInScreen')
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
   let redirectUri = makeRedirectUri({ useProxy: false })
   return (
     <Background>
-    <BackButton goBack={navigation.goBack} />
-    <Button onPress={() => promptAsync({ redirectUri })}>
-        <FontAwesomeIcon style={styles.link} icon={ faGithub } size={ 100 } />
-    </Button>
-    <Header onPress={() => promptAsync({ redirectUri })}>Logga in med github</Header>
-    <Footer />
+      <BackButton goBack={navigation.goBack} />
+      <Button onPress={() => promptAsync({ redirectUri })}>
+        <FontAwesomeIcon style={styles.link} icon={faGithub} size={100} />
+      </Button>
+      <Header onPress={() => promptAsync({ redirectUri })}>Logga in med github</Header>
+      <Footer />
     </Background>
   )
 }
