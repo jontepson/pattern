@@ -5,49 +5,62 @@
  * 
  */
 import React, { useEffect, useState } from 'react'
-import Background from '../components/Background'
-import Button from '../components/Button'
-import Footer from '../components/Footer';
 import { theme } from '../core/theme'
 import { Text, StyleSheet, Dimensions, Alert } from 'react-native'
 import MapView, { Polyline, Polygon } from 'react-native-maps';
-import fetchCitiesApi from '../hooks/fetchCitiesApi';
-
+import { fetchFromApi } from '../hooks';
+import {
+  Background,
+  Button,
+  Footer
+} from '../components'
+import { returnBike } from '../functions/DriveFunctions';
+const server = "http://192.168.1.73:1337";
 const { width } = Dimensions.get('window');
 const qrSize = width * 0.9;
 
-
-export default function DriveScreen({ route, navigation }) {
+const DriveScreen = ({ route, navigation }) => {
   const [latitude, setLatitude] = useState()
   const [longitude, setLongitude] = useState()
   const [routeCoordinates, setRouteCoordinates] = useState([])
   const [speed, setSpeed] = useState(0)
   //const [trackSpeed, setTrackSpeed] = useState([]);
-  const data = fetchCitiesApi();
+  const data = fetchFromApi("cities");
   let loggObject;
   let battery;
+  let userData;
+  
   try {
+    userData = route.params.userData
     loggObject = route.params.loggObject;
     battery = route.params.battery;
   } catch (error) {
+    userData = {
+      username: "tester",
+      balance: 100
+    }
     loggObject = "tester";
     battery = 10;
   }
   /**
    * update once every 10 sec
    * 
-   * KOORDINATER
+   * 
    */
-  /*
+  
   const MINUTE_MS = 10000;
    useEffect(() => {
     const interval = setInterval(() => {
       const api_updateScooter_endpoint = "/api/scooter";
+      battery -= 1;
       let body = {
-        id: loggObject.id,
-        battery: battery - 0.1,
-        speed: speed
+        _id: loggObject._id,
+        battery: battery,
+        speed: speed,
+        lat: latitude,
+        lng: longitude
       }
+      //console.log(body)
       fetch(server + api_updateScooter_endpoint, {
         method: "PUT",
         headers: {
@@ -63,7 +76,7 @@ export default function DriveScreen({ route, navigation }) {
   
     return () => clearInterval(interval);
   }, [])
-*/
+
   /**
    * Get parking zones and charging posts from api
    */
@@ -76,8 +89,8 @@ export default function DriveScreen({ route, navigation }) {
   const showChargingZone = (data) => {
     if (data) {
       try {
+        let array = [];
         for (const property in data) {
-          let array = [];
           for (let polygonepart in data[property].charging_posts[0].position) {
             // loop all parts of polygone
             array.push({
@@ -86,21 +99,11 @@ export default function DriveScreen({ route, navigation }) {
             })
             // console.log(array)
           }
-          return (
-            <Polygon
-              key={"1"}
-              strokeWidth={2}
-              coordinates={array}
-              fillColor="green"
-              tappable={true}
-              onPress={() => alert("Charging Post")}
-            />
-          )
         }
+        return array
       } catch (error) {
         console.log(error)
       }
-
     }
   }
 
@@ -112,9 +115,9 @@ export default function DriveScreen({ route, navigation }) {
   const showParkingZone = (data) => {
     if (data) {
       try {
+        let array = [];
         for (const property in data) {
-          let array = [];
-
+          
           for (let polygonepart in data[property].parking_zones[0].position) {
             // loop all parts of polygone
             array.push({
@@ -122,15 +125,8 @@ export default function DriveScreen({ route, navigation }) {
               "longitude": parseFloat(data[property].parking_zones[0].position[polygonepart].lng),
             })
           }
-          return (
-            <Polygon
-              coordinates={array}
-              fillColor="lightblue"
-              tappable={true}
-              onPress={() => alert("Parking Zone")}
-            />
-          )
         }
+        return array
       } catch (error) {
         console.log(error)
       }
@@ -146,47 +142,18 @@ export default function DriveScreen({ route, navigation }) {
    * @param {Float} longitude
    * @redirect Back to MapScreen2
    */
-  const returnBike = (loggObject, latitude, longitude) => {
-    /***
-     * lämna tillbaka cykel
-     */
-    var today = new Date();
-    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date + ' ' + time;
-    loggObject.end_lat = latitude;
-    loggObject.end_lng = longitude;
-    loggObject.end_time = dateTime;
-    let sum = 0;
-    //let averageSpeed = trackSpeed.forEach(n => sum += n) / trackSpeed.length;
+ 
 
-    Alert.alert(
-      "Åter",
-      "Tack för den här gången!",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("cancel alert"),
-          style: "cancel"
-        }
-      ]
-    );
-    navigation.navigate('MapScreen2')
-    //console.log("return bike")
-  }
   /**
-   * Function to show speed 
-   * @returns Header to show speed
+   * Function to cap speed
    */
-  
-  const showSpeed = () => {
+/*
+  useEffect(() => {
     if (speed >= 30) {
       setSpeed(30)
     }
-    return <Text style={styles.header}>Din hastighet: {speed}</Text>
-    
-  }
-
+  },[speed])
+*/
   return (
     <Background>
       <MapView
@@ -206,13 +173,14 @@ export default function DriveScreen({ route, navigation }) {
         <Polyline
           coordinates={routeCoordinates}>
         </Polyline>
-        {showChargingZone(data)}
-        {showParkingZone(data)}
-        {showSpeed()}
+        {/*showChargingZone(data)*/}
+        {/*showParkingZone(data)*/}
+        {/*showSpeed()*/}
+        <Text style={styles.header}>Din hastighet: {speed}</Text>
       </MapView>
       <Button
         mode="contained"
-        onPress={() => returnBike(loggObject, latitude, longitude)}>
+        onPress={() => returnBike(loggObject, latitude, longitude, navigation, userData)}>
         Lämna tillbaka cykel
       </Button>
       <Footer />
@@ -235,3 +203,5 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
 });
+
+export default DriveScreen;

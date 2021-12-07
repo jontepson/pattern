@@ -14,3 +14,7 @@ src/config/config.json
 .DS_Store
 ios/
 android/
+# Unused screens
+src/screens/MapScreen.js
+src/screens/LoggedInScreen.js
+src/data/

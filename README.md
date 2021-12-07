@@ -11,6 +11,7 @@
   "clientSecret": "Github client Secret",
   "redirect_uri": "Github client redirect uri"
 }
+
 !redirect_uri används inte, kolla på src/screens/LoginScreen vid useAuthRequest för nuvarande config redirect_uri
 
 

@@ -4,12 +4,12 @@ import React from 'react';
 import fetch from 'node-fetch'
 const server = "http://192.168.1.73:1337";
 
-export default function fetchBikesApi() {
+export default function fetchFromApi(typeOf, user="") {
   const [data, setData] = React.useState([]);  	
     
   React.useEffect(() => {
-    let getCitiesEndpoint = "/api/cities";
-    fetch(server + getCitiesEndpoint, {
+    const getApiEndpoint = "/api/"+ typeOf + "/" + user;
+    fetch(server + getApiEndpoint, {
       method: "GET",
       headers: {
         Accept: 'application/json',

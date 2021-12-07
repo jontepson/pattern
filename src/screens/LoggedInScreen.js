@@ -4,10 +4,12 @@
  */
 import React from 'react'
 import { Linking } from 'react-native'
-import Background from '../components/Background'
-import Logo from '../components/Logo'
-import Button from '../components/Button'
-import Footer from '../components/Footer';
+import {
+  Background,
+  Logo,
+  Button,
+  Footer
+} from '../components'
 
 export default function LoggedInScreen({ route, navigation }) {
   let user;

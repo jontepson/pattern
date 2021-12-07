@@ -1,3 +1,3 @@
-export { default as fetchBikesApi } from './fetchBikesApi'
-export { default as fetchCitiesApi } from './fetchCitiesApi'
-export { default as fetchUserApi } from './fetchUserApi'
+export { default as warmUpBrowser } from './warmUpBrowser'
+export { default as logDataHook } from './logDataHook'
+export { default as fetchFromApi } from './fetchFromApi'

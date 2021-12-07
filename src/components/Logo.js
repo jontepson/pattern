@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faAtlassian } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesome5 } from '@expo/vector-icons'; 
 import { theme } from '../core/theme';
 import Header from './Header';
 import Paragraph from './Paragraph';
@@ -9,7 +8,7 @@ export default function Logo() {
 
   return (
     <>
-  <FontAwesomeIcon style={styles.logo} icon={ faAtlassian } size={ 100 } />
+  <FontAwesome5 name="atlassian" size={100} style={styles.logo}/>
   <Header>Ajjo</Header>
   <Paragraph>
         No more walking

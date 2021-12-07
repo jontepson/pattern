@@ -1,10 +1,12 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 
+import Enzyme, { shallow, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import App from './App';
-
+Enzyme.configure({ adapter: new Adapter() });
 describe('<App />', () => {
-    it('<App /> doesnt test anything', () => {
-        expect(1).toBe(1);
+    it('<App /> renders correctly', () => {
+        let test = shallow(<App />);
+        expect(test.length).toBe(1);
     });
 });

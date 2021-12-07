@@ -3,20 +3,22 @@
  * Use github login
  */
 import React, { useState, useEffect } from 'react'
-import { TouchableOpacity, StyleSheet, View, Text } from 'react-native'
-import Background from '../components/Background'
-import Button from '../components/Button';
+import { TouchableOpacity, StyleSheet, View} from 'react-native'
 import * as WebBrowser from 'expo-web-browser';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
-import BackButton from '../components/BackButton';
 import { theme } from '../core/theme';
-import Footer from '../components/Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { AntDesign } from '@expo/vector-icons';
 import config from '../config/config.json';
-import Header from '../components/Header';
+import { warmUpBrowser } from '../hooks';
+import {
+  Background,
+  Button,
+  Footer,
+  BackButton,
+  Header
+} from '../components'
 
-const server = "http://localhost:1337";
+const server = "http://192.168.1.73:1337";
 
 const discovery = {
   authorizationEndpoint: 'https://github.com/login/oauth/authorize',
@@ -26,17 +28,8 @@ const discovery = {
 
 WebBrowser.maybeCompleteAuthSession();
 export default function LoginScreen({ navigation }) {
-  /**
-   * 
-   */
-  useEffect(() => {
-    WebBrowser.warmUpAsync();
-
-    return () => {
-      WebBrowser.coolDownAsync();
-    };
-  }, [])
-  if (process.env.NODE_ENV !== "test") {
+ warmUpBrowser()
+  
     const [request, response, promptAsync] = useAuthRequest(
       {
         clientId: config.clientId,
@@ -74,10 +67,7 @@ export default function LoginScreen({ navigation }) {
                 }
               }).then((response) => response.json())
                 .then((data) => {
-                  
-                  //createUser(data.login, data.id)
-  
-                  navigation.navigate('MapScreen2', { user: data.login })
+                  LoginUser(data.login)
                 })
                 .catch((error) => {
                   console.error(error);
@@ -92,7 +82,7 @@ export default function LoginScreen({ navigation }) {
       }
     }, [response]);
   
-  }
+ 
   
   /**
    * Do some check if user is in register or not. 
@@ -102,38 +92,37 @@ export default function LoginScreen({ navigation }) {
   /**
    * 
    * @param {*} username 
-   * @param {*} id 
+   * @param {*} id
    */
-  function createUser(username, id) {
-    const createUserEndpoint = "/api/user/"; //endpoint for creating user
+  function LoginUser(username) {
+    const createUserEndpoint = "/api/customers/login"; //endpoint for creating and login user
     let body = {
-      "user": username,
-      "id": id
+      "username": username,
     }
-
     fetch(server + createUserEndpoint, {
       method: "POST",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(body)
     }).then((response) => response.json())
       .then((data) => {
-        console.log(data)
-
-      }).then(() => {
-        // redirect till loggedInScreen och skicka med token eller username eller hur vi ska göra med det.
-        navigation.navigate('LoggedInScreen')
+        navigation.navigate('MapScreen2', { data: data })
       })
       .catch((error) => {
-        console.log(error);
+        alert(error)
+        //console.log(error);
       })
   }
+
+
   let redirectUri = makeRedirectUri({ useProxy: false })
   return (
     <Background>
       <BackButton goBack={navigation.goBack} />
-      <Button onPress={() => promptAsync({ redirectUri })}>
-        <FontAwesomeIcon style={styles.link} icon={faGithub} size={100} />
-      </Button>
-      <Header onPress={() => promptAsync({ redirectUri })}>Logga in med github</Header>
+      <AntDesign className="loginImage" style={styles.link} name="github" size={130} onPress={() => promptAsync({ redirectUri })}/>
+      <Header className="loginHeader" onPress={() => promptAsync({ redirectUri })}>Logga in med github</Header>
       <Footer />
     </Background>
   )
@@ -157,5 +146,7 @@ const styles = StyleSheet.create({
   link: {
     fontWeight: 'bold',
     color: theme.colors.primary,
+    paddingTop: 4,
+    paddingBottom: 4
   },
 })

@@ -4,17 +4,17 @@
  */
 import React from 'react'
 import { Linking } from 'react-native'
-import Background from '../components/Background'
-import Logo from '../components/Logo'
-import Button from '../components/Button'
-import Footer from '../components/Footer';
+import {
+  Background,
+  Logo,
+  Button,
+  Footer
+} from '../components'
 
 export default function SettingsScreen({ route, navigation }) {
   let user;
-  let token;
   try {
     user = route.params.user;
-    token = route.params.token;
   } catch (error) {
     user = "tester";
     token = "tester";
@@ -23,34 +23,43 @@ export default function SettingsScreen({ route, navigation }) {
     <Background>
       <Logo />
       <Button
+        className="map"
         mode="contained"
-        onPress={() => navigation.navigate('CameraScreen', { user: user })}
+        onPress={() => {
+          try {
+            navigation.navigate('MapScreen2')
+          } catch (error) {
+            console.error(error);
+          }
+        }}
       >
-        Hyr cykel
-      </Button>
-      <Button
-        mode="contained"
-        onPress={() => navigation.navigate('MapScreen')}
-      >
-        Karta 1
-      </Button>
-      <Button
-        mode="contained"
-        onPress={() => navigation.navigate('MapScreen2')}
-      >
-        Karta 2
+        Karta
       </Button>
 
       <Button
+        className="mypage"
         mode="contained"
-        onPress={() => Linking.openURL('https://google.com')}
+        onPress={() => {
+          try {
+            Linking.openURL('https://google.com')
+          } catch (error) {
+            console.error(error);
+          }
+        }}
       >
         Mina sidor
       </Button>
 
       <Button
+        className="logout"
         mode="contained"
-        onPress={() => navigation.navigate('StartScreen')}
+        onPress={() => {
+          try {
+            navigation.navigate('StartScreen')
+          } catch (error) {
+            console.error(error);
+          }
+        }}
       >
         Logga ut
       </Button>
