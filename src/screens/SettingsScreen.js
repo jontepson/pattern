@@ -63,7 +63,7 @@ export default function SettingsScreen({ route, navigation }) {
       >
         Logga ut
       </Button>
-      <Footer />
+     
     </Background>
   )
 }

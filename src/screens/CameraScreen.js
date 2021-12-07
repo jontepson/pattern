@@ -71,7 +71,7 @@ export default function CameraScreen({ route, navigation }) {
         {scanned && <Button title={'Tryck för att scanna igen'} onPress={() => setScanned(false)} />}
       </BarCodeScanner>
       <Header>Scanna cykel</Header>
-      <Footer />
+      
     </Background>
   );
 }

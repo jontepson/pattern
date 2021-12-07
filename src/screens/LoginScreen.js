@@ -123,7 +123,7 @@ export default function LoginScreen({ navigation }) {
       <BackButton goBack={navigation.goBack} />
       <AntDesign className="loginImage" style={styles.link} name="github" size={130} onPress={() => promptAsync({ redirectUri })}/>
       <Header className="loginHeader" onPress={() => promptAsync({ redirectUri })}>Logga in med github</Header>
-      <Footer />
+      
     </Background>
   )
 }

@@ -108,29 +108,6 @@ exports[`<Screens /> <LoginScreen /> renders correctly 1`] = `
     >
       Logga in med github
     </Text>
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#000000",
-            "fontFamily": "System",
-            "fontWeight": "400",
-          },
-          Object {
-            "textAlign": "left",
-          },
-          Object {
-            "bottom": 10,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      By Svenska Elsparkcyklar AB
-    </Text>
   </View>
 </View>
 `;
@@ -348,33 +325,10 @@ exports[`<Screens /> <MapScreen2 /> renders correctly 1`] = `
         </View>
       </View>
     </View>
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#000000",
-            "fontFamily": "System",
-            "fontWeight": "400",
-          },
-          Object {
-            "textAlign": "left",
-          },
-          Object {
-            "bottom": 10,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      By Svenska Elsparkcyklar AB
-    </Text>
   </View>
 </View>
 `;
 
-exports[`<Screens /> <SettingsScreen  /> renders correctly 1`] = `"<View style=\\"flex:1;width:100%;background-color:#ffffff\\"><Image source=\\"1\\" resizeMode=\\"repeat\\" style=\\"0:[object Object];1:[object Object]\\"></Image><View style=\\"0:[object Object];1:[object Object]\\"><Text style=\\"0:[object Object];1:[object Object];2:[object Object];3:[object Object]\\"></Text><Text style=\\"0:[object Object];1:[object Object];2:[object Object]\\">Ajjo</Text><Text style=\\"0:[object Object];1:[object Object];2:[object Object]\\">No more walking</Text><View class=\\"map\\" style=\\"background-color:#6200ee;shadow-color:#000000;shadow-offset:[object Object];shadow-opacity:0.24px;shadow-radius:1.5px;min-width:64px;border-style:solid;elevation:2px;border-color:transparent;border-width:0;border-radius:4px;width:100%;margin-vertical:10px;padding-vertical:2px\\"><View accessibilityRole=\\"button\\" accessibilityState=\\"[object Object]\\" style=\\"0:[object Object];1:[object Object]\\" focusable=\\"true\\"><View style=\\"0:[object Object]\\"><Text numberOfLines=\\"1\\" style=\\"0:[object Object];1:[object Object];2:[object Object],,[object Object],[object Object],[object Object],[object Object]\\">Karta</Text></View></View></View><View class=\\"mypage\\" style=\\"background-color:#6200ee;shadow-color:#000000;shadow-offset:[object Object];shadow-opacity:0.24px;shadow-radius:1.5px;min-width:64px;border-style:solid;elevation:2px;border-color:transparent;border-width:0;border-radius:4px;width:100%;margin-vertical:10px;padding-vertical:2px\\"><View accessibilityRole=\\"button\\" accessibilityState=\\"[object Object]\\" style=\\"0:[object Object];1:[object Object]\\" focusable=\\"true\\"><View style=\\"0:[object Object]\\"><Text numberOfLines=\\"1\\" style=\\"0:[object Object];1:[object Object];2:[object Object],,[object Object],[object Object],[object Object],[object Object]\\">Mina sidor</Text></View></View></View><View class=\\"logout\\" style=\\"background-color:#6200ee;shadow-color:#000000;shadow-offset:[object Object];shadow-opacity:0.24px;shadow-radius:1.5px;min-width:64px;border-style:solid;elevation:2px;border-color:transparent;border-width:0;border-radius:4px;width:100%;margin-vertical:10px;padding-vertical:2px\\"><View accessibilityRole=\\"button\\" accessibilityState=\\"[object Object]\\" style=\\"0:[object Object];1:[object Object]\\" focusable=\\"true\\"><View style=\\"0:[object Object]\\"><Text numberOfLines=\\"1\\" style=\\"0:[object Object];1:[object Object];2:[object Object],,[object Object],[object Object],[object Object],[object Object]\\">Logga ut</Text></View></View></View><Text style=\\"0:[object Object];1:[object Object];2:[object Object]\\">By Svenska Elsparkcyklar AB</Text></View></View>"`;
+exports[`<Screens /> <SettingsScreen  /> renders correctly 1`] = `"<View style=\\"flex:1;width:100%;background-color:#ffffff\\"><Image source=\\"1\\" resizeMode=\\"repeat\\" style=\\"0:[object Object];1:[object Object]\\"></Image><View style=\\"0:[object Object];1:[object Object]\\"><Text style=\\"0:[object Object];1:[object Object];2:[object Object];3:[object Object]\\"></Text><Text style=\\"0:[object Object];1:[object Object];2:[object Object]\\">Svenska Elsparkcyklar</Text><Text style=\\"0:[object Object];1:[object Object];2:[object Object]\\">No more walking</Text><View class=\\"map\\" style=\\"background-color:#6200ee;shadow-color:#000000;shadow-offset:[object Object];shadow-opacity:0.24px;shadow-radius:1.5px;min-width:64px;border-style:solid;elevation:2px;border-color:transparent;border-width:0;border-radius:4px;width:100%;margin-vertical:10px;padding-vertical:2px\\"><View accessibilityRole=\\"button\\" accessibilityState=\\"[object Object]\\" style=\\"0:[object Object];1:[object Object]\\" focusable=\\"true\\"><View style=\\"0:[object Object]\\"><Text numberOfLines=\\"1\\" style=\\"0:[object Object];1:[object Object];2:[object Object],,[object Object],[object Object],[object Object],[object Object]\\">Karta</Text></View></View></View><View class=\\"mypage\\" style=\\"background-color:#6200ee;shadow-color:#000000;shadow-offset:[object Object];shadow-opacity:0.24px;shadow-radius:1.5px;min-width:64px;border-style:solid;elevation:2px;border-color:transparent;border-width:0;border-radius:4px;width:100%;margin-vertical:10px;padding-vertical:2px\\"><View accessibilityRole=\\"button\\" accessibilityState=\\"[object Object]\\" style=\\"0:[object Object];1:[object Object]\\" focusable=\\"true\\"><View style=\\"0:[object Object]\\"><Text numberOfLines=\\"1\\" style=\\"0:[object Object];1:[object Object];2:[object Object],,[object Object],[object Object],[object Object],[object Object]\\">Mina sidor</Text></View></View></View><View class=\\"logout\\" style=\\"background-color:#6200ee;shadow-color:#000000;shadow-offset:[object Object];shadow-opacity:0.24px;shadow-radius:1.5px;min-width:64px;border-style:solid;elevation:2px;border-color:transparent;border-width:0;border-radius:4px;width:100%;margin-vertical:10px;padding-vertical:2px\\"><View accessibilityRole=\\"button\\" accessibilityState=\\"[object Object]\\" style=\\"0:[object Object];1:[object Object]\\" focusable=\\"true\\"><View style=\\"0:[object Object]\\"><Text numberOfLines=\\"1\\" style=\\"0:[object Object];1:[object Object];2:[object Object],,[object Object],[object Object],[object Object],[object Object]\\">Logga ut</Text></View></View></View></View></View>"`;
 
-exports[`<Screens /> <StartScreen /> renders correctly 1`] = `"<View style=\\"flex:1;width:100%;background-color:#ffffff\\"><Image source=\\"1\\" resizeMode=\\"repeat\\" style=\\"0:[object Object];1:[object Object]\\"></Image><View style=\\"0:[object Object];1:[object Object]\\"><Text></Text><Text style=\\"0:[object Object];1:[object Object];2:[object Object]\\">Ajjo</Text><Text style=\\"0:[object Object];1:[object Object];2:[object Object]\\">No more walking</Text><View class=\\"login\\" style=\\"background-color:#6200ee;shadow-color:#000000;shadow-offset:[object Object];shadow-opacity:0.24px;shadow-radius:1.5px;min-width:64px;border-style:solid;elevation:2px;border-color:transparent;border-width:0;border-radius:4px;width:100%;margin-vertical:10px;padding-vertical:2px\\"><View accessibilityRole=\\"button\\" accessibilityState=\\"[object Object]\\" style=\\"0:[object Object];1:[object Object]\\" focusable=\\"true\\"><View style=\\"0:[object Object]\\"><Text numberOfLines=\\"1\\" style=\\"0:[object Object];1:[object Object];2:[object Object],,[object Object],[object Object],[object Object],[object Object]\\">Logga in</Text></View></View></View><View style=\\"background-color:#6200ee;shadow-color:#000000;shadow-offset:[object Object];shadow-opacity:0.24px;shadow-radius:1.5px;min-width:64px;border-style:solid;elevation:2px;border-color:transparent;border-width:0;border-radius:4px;width:100%;margin-vertical:10px;padding-vertical:2px\\"><View accessibilityRole=\\"button\\" accessibilityState=\\"[object Object]\\" style=\\"0:[object Object];1:[object Object]\\" focusable=\\"true\\"><View style=\\"0:[object Object]\\"><Text numberOfLines=\\"1\\" style=\\"0:[object Object];1:[object Object];2:[object Object],,[object Object],[object Object],[object Object],[object Object]\\">Fortsätt utan att logga in</Text></View></View></View><Text style=\\"0:[object Object];1:[object Object];2:[object Object]\\">By Svenska Elsparkcyklar AB</Text></View></View>"`;
+exports[`<Screens /> <StartScreen /> renders correctly 1`] = `"<View style=\\"flex:1;width:100%;background-color:#ffffff\\"><Image source=\\"1\\" resizeMode=\\"repeat\\" style=\\"0:[object Object];1:[object Object]\\"></Image><View style=\\"0:[object Object];1:[object Object]\\"><Text></Text><Text style=\\"0:[object Object];1:[object Object];2:[object Object]\\">Svenska Elsparkcyklar</Text><Text style=\\"0:[object Object];1:[object Object];2:[object Object]\\">No more walking</Text><View class=\\"login\\" style=\\"background-color:#6200ee;shadow-color:#000000;shadow-offset:[object Object];shadow-opacity:0.24px;shadow-radius:1.5px;min-width:64px;border-style:solid;elevation:2px;border-color:transparent;border-width:0;border-radius:4px;width:100%;margin-vertical:10px;padding-vertical:2px\\"><View accessibilityRole=\\"button\\" accessibilityState=\\"[object Object]\\" style=\\"0:[object Object];1:[object Object]\\" focusable=\\"true\\"><View style=\\"0:[object Object]\\"><Text numberOfLines=\\"1\\" style=\\"0:[object Object];1:[object Object];2:[object Object],,[object Object],[object Object],[object Object],[object Object]\\">Logga in</Text></View></View></View></View></View>"`;

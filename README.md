@@ -20,13 +20,3 @@
 }
 
 !redirect_uri används inte, kolla på src/screens/LoginScreen vid useAuthRequest för nuvarande config redirect_uri
-
-
-
-## V1.1.0
-
-## Räcker det att spara användarnamn eller behöver vi någon slags JWT
-## Åsikter om design och funktioner
-## Hur en användare ska se ut
-## Vad som ska sparas
-## Något mer som behövs 

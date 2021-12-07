@@ -8,9 +8,8 @@ import {
   Button,
   Footer
 } from '../components'
-
 export default function StartScreen({ navigation }) {
-  console.log(process.env.NODE_ENV)
+  //console.log(process.env.NODE_ENV)
   return (
     <Background>
       <Logo />
@@ -28,7 +27,7 @@ export default function StartScreen({ navigation }) {
       >
         Logga in
       </Button>
-
+ {/*
       <Button
         mode="contained"
         onPress={() => navigation.navigate('MapScreen2', { data: {
@@ -47,6 +46,7 @@ export default function StartScreen({ navigation }) {
       >
         Fortsätt utan att logga in
       </Button>
+    */}
       {/*
       <Button
         mode="contained"
@@ -55,7 +55,7 @@ export default function StartScreen({ navigation }) {
         Drive
       </Button>
       */}
-      <Footer />
+      
     </Background>
   )
 }

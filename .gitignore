@@ -18,3 +18,4 @@ android/
 src/screens/MapScreen.js
 src/screens/LoggedInScreen.js
 src/data/
+coverage/

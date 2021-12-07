@@ -24,12 +24,27 @@ const DriveScreen = ({ route, navigation }) => {
   const [longitude, setLongitude] = useState()
   const [routeCoordinates, setRouteCoordinates] = useState([])
   const [speed, setSpeed] = useState(0)
-  //const [trackSpeed, setTrackSpeed] = useState([]);
+  const [allParkingZones, setAllParkingZones] = useState([])
+
   const data = fetchFromApi("cities");
   let loggObject;
   let battery;
   let userData;
-  
+  let polygons = []
+  useEffect(() => {
+    data.forEach(element => {
+      setAllParkingZones(element.parking_zones)
+      });
+
+      allParkingZones.forEach(parking_zone => {
+        polygons.push([
+          {"latitude": parking_zone.position.polygonePart1.lat, "longitude": parking_zone.position.polygonePart1.lng },
+          {"latitude": parking_zone.position.polygonePart2.lat, "longitude": parking_zone.position.polygonePart2.lng },
+          {"latitude": parking_zone.position.polygonePart3.lat, "longitude": parking_zone.position.polygonePart3.lng },
+          {"latitude": parking_zone.position.polygonePart4.lat, "longitude": parking_zone.position.polygonePart4.lng }
+        ])
+      })
+  }, [data])
   try {
     userData = route.params.userData
     loggObject = route.params.loggObject;
@@ -77,83 +92,6 @@ const DriveScreen = ({ route, navigation }) => {
     return () => clearInterval(interval);
   }, [])
 
-  /**
-   * Get parking zones and charging posts from api
-   */
-
-  /**
-   * Show charging zones on map
-   * @param {Object} data 
-   * @returns Polygons to render on map
-   */
-  const showChargingZone = (data) => {
-    if (data) {
-      try {
-        let array = [];
-        for (const property in data) {
-          for (let polygonepart in data[property].charging_posts[0].position) {
-            // loop all parts of polygone
-            array.push({
-              "latitude": parseFloat(data[property].charging_posts[0].position[polygonepart].lat),
-              "longitude": parseFloat(data[property].charging_posts[0].position[polygonepart].lng),
-            })
-            // console.log(array)
-          }
-        }
-        return array
-      } catch (error) {
-        console.log(error)
-      }
-    }
-  }
-
-  /**
-   * Show parking zones on map
-   * @param {Object} data 
-   * @returns Polygons to render on map
-   */
-  const showParkingZone = (data) => {
-    if (data) {
-      try {
-        let array = [];
-        for (const property in data) {
-          
-          for (let polygonepart in data[property].parking_zones[0].position) {
-            // loop all parts of polygone
-            array.push({
-              "latitude": parseFloat(data[property].parking_zones[0].position[polygonepart].lat),
-              "longitude": parseFloat(data[property].parking_zones[0].position[polygonepart].lng),
-            })
-          }
-        }
-        return array
-      } catch (error) {
-        console.log(error)
-      }
-
-      // console.log("parkingzone complete")
-    }
-  }
-
-  /**
-   * Function to return a bike
-   * @param {Object} loggObject 
-   * @param {Float} latitude 
-   * @param {Float} longitude
-   * @redirect Back to MapScreen2
-   */
- 
-
-  /**
-   * Function to cap speed
-   */
-/*
-  useEffect(() => {
-    if (speed >= 30) {
-      setSpeed(30)
-    }
-  },[speed])
-*/
   return (
     <Background>
       <MapView
@@ -165,7 +103,7 @@ const DriveScreen = ({ route, navigation }) => {
           if (longitude && latitude) {
             setRouteCoordinates(routeCoordinates.concat({ latitude: latitude, longitude: longitude }));
             setSpeed(e.nativeEvent.coordinate.speed.toFixed(1));
-            //trackSpeed.push(e.nativeEvent.coordinate.speed.toFixed(1));
+            
           }
         }}
         followsUserLocation={true}
@@ -173,9 +111,17 @@ const DriveScreen = ({ route, navigation }) => {
         <Polyline
           coordinates={routeCoordinates}>
         </Polyline>
-        {/*showChargingZone(data)*/}
-        {/*showParkingZone(data)*/}
-        {/*showSpeed()*/}
+        {polygons.map((parking_zone, index) => {
+          <Polygon
+          key={index}
+          strokeWidth={100}
+          coordinates={parking_zone}
+          strokeColor={theme.colors.secondary}
+          fillColor={theme.colors.secondary}
+          tappable={true}
+          onPress={() => alert("Parking zone")}>
+          </Polygon>
+        })}
         <Text style={styles.header}>Din hastighet: {speed}</Text>
       </MapView>
       <Button
@@ -183,7 +129,7 @@ const DriveScreen = ({ route, navigation }) => {
         onPress={() => returnBike(loggObject, latitude, longitude, navigation, userData)}>
         Lämna tillbaka cykel
       </Button>
-      <Footer />
+      
     </Background>
   )
 }

@@ -5,9 +5,10 @@
  */
 
 import React from 'react';
-import MapView, { Marker } from 'react-native-maps'
+import MapView, { Marker, Polygon } from 'react-native-maps'
 import { Dimensions, StyleSheet } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons'; 
+import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { theme } from '../core/theme';
 import { logDataHook, fetchFromApi } from '../hooks';
 import {
@@ -30,7 +31,6 @@ export default function MapScreen2({ route, navigation }) {
     userData = fetchFromApi( "customers", "tester" );
     _id = "ThisIsA_IdThatIsUsedIfUserAintLogginin"
   }
-
   return (
     <Background>
       <SettingsButton className="settings" 
@@ -52,7 +52,8 @@ export default function MapScreen2({ route, navigation }) {
           title={"Bike " + marker._id + " " + marker.city_location}
           description={"Battery: " + marker.battery.toString()}
           >
-               <FontAwesome5 name="atlassian" size={20} style={styles.logo}/>
+               {/*<FontAwesome5 name="atlassian" size={20} style={styles.logo}/>*/}
+               <MaterialIcons name="electric-scooter" size={20} style={styles.logo} />
           </Marker>
         ))}
       </MapView>
@@ -69,7 +70,7 @@ export default function MapScreen2({ route, navigation }) {
       >
         Scanna och kör
       </Button>
-      <Footer />
+    
     </Background>
   )
 }

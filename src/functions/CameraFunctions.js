@@ -24,8 +24,8 @@
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date + ' ' + time;
     */
-    //const specific_bike_endpoint = "/api/scooter/" + id;
-    const specific_bike_endpoint = "/api/scooter/619df218cf19506c715c5c90"
+    const specific_bike_endpoint = "/api/scooter/" + id;
+    //const specific_bike_endpoint = "/api/scooter/619df218cf19506c715c5c90"
     if(process.env.NODE_ENV !== "test") {
     try {
       if (userData.balance > 0) {
