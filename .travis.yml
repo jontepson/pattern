@@ -15,7 +15,7 @@ before_script:
     - npm install
 
 script:
-    - npm run testTravis
+    - npm run test
 
 after_success:
     - npm run report-coveralls

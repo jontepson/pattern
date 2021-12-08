@@ -8,7 +8,6 @@ import * as WebBrowser from 'expo-web-browser';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { theme } from '../core/theme';
 import { AntDesign } from '@expo/vector-icons';
-import config from '../config/config.json';
 import { warmUpBrowser } from '../hooks';
 import {
   Background,
@@ -19,11 +18,18 @@ import {
 } from '../components'
 
 const server = "http://192.168.1.73:1337";
-
+let config;
+try {
+  import config from '../config/config.json';
+} catch (error) {
+  console.log(error)
+}
+let clientId = process.env.CLIENTID || config.clientId;
+let clientSecret = process.env.CLIENTSECRET || config.clientSecret
 const discovery = {
   authorizationEndpoint: 'https://github.com/login/oauth/authorize',
   tokenEndpoint: 'https://github.com/login/oauth/access_token',
-  revocationEndpoint: 'https://github.com/settings/connections/applications/' + config.clientId,
+  revocationEndpoint: 'https://github.com/settings/connections/applications/' + clientId,
 };
 
 WebBrowser.maybeCompleteAuthSession();
@@ -32,7 +38,7 @@ export default function LoginScreen({ navigation }) {
   
     const [request, response, promptAsync] = useAuthRequest(
       {
-        clientId: config.clientId,
+        clientId: clientId,
         scopes: ['identity'],
         redirectUri: makeRedirectUri({ useProxy: false })
       },
@@ -43,8 +49,8 @@ export default function LoginScreen({ navigation }) {
       if (response?.type === 'success') {
         const { code } = response.params;
         const body = {
-          client_id: config.clientId,
-          client_secret: config.clientSecret,
+          client_id: clientId,
+          client_secret: clientSecret,
           code: code,
         }
   
