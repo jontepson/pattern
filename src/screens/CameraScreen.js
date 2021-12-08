@@ -12,7 +12,8 @@ import {
   Logo,
   BackButton,
   Header,
-  Footer
+  Footer,
+  ErrorBoundary
 } from '../components'
 import { rentBikeAlert } from '../functions/CameraFunctions';
 import { logDataHook } from '../hooks';
@@ -59,6 +60,7 @@ export default function CameraScreen({ route, navigation }) {
     return <Text>No access to camera</Text>;
   }
   return (
+    <ErrorBoundary>
     <Background>
       <Logo />
 
@@ -73,6 +75,7 @@ export default function CameraScreen({ route, navigation }) {
       <Header>Scanna cykel</Header>
       
     </Background>
+    </ErrorBoundary>
   );
 }
 

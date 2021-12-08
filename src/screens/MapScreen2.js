@@ -12,10 +12,11 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { theme } from '../core/theme';
 import { logDataHook, fetchFromApi } from '../hooks';
 import {
-  Background,
   SettingsButton,
   Button,
-  Footer
+  Background,
+  Footer,
+  ErrorBoundary
 } from '../components'
 
 const { width, height } = Dimensions.get('window');
@@ -32,6 +33,7 @@ export default function MapScreen2({ route, navigation }) {
     _id = "ThisIsA_IdThatIsUsedIfUserAintLogginin"
   }
   return (
+    <ErrorBoundary>
     <Background>
       <SettingsButton className="settings" 
       goBack={() => navigation.navigate("SettingsScreen")}
@@ -72,12 +74,14 @@ export default function MapScreen2({ route, navigation }) {
       </Button>
     
     </Background>
+    </ErrorBoundary>
   )
 }
 const styles = StyleSheet.create({
   map: {
     width: width,
     height: height,
+    marginTop: -10
   },
   header: {
     width: 100,

@@ -14,13 +14,14 @@ import {
   Button,
   Footer,
   BackButton,
-  Header
+  Header,
+  ErrorBoundary
 } from '../components'
 
 const server = "http://192.168.1.73:1337";
 let config;
 try {
-  import config from '../config/config.json';
+  config = require("../config/config.json");
 } catch (error) {
   console.log(error)
 }
@@ -125,12 +126,14 @@ export default function LoginScreen({ navigation }) {
 
   let redirectUri = makeRedirectUri({ useProxy: false })
   return (
+    <ErrorBoundary>
     <Background>
       <BackButton goBack={navigation.goBack} />
       <AntDesign className="loginImage" style={styles.link} name="github" size={130} onPress={() => promptAsync({ redirectUri })}/>
       <Header className="loginHeader" onPress={() => promptAsync({ redirectUri })}>Logga in med github</Header>
       
     </Background>
+    </ErrorBoundary>
   )
 }
 

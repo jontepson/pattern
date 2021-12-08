@@ -8,7 +8,7 @@ import {
   Background,
   Logo,
   Button,
-  Footer
+  ErrorBoundary
 } from '../components'
 
 export default function SettingsScreen({ route, navigation }) {
@@ -20,6 +20,7 @@ export default function SettingsScreen({ route, navigation }) {
     token = "tester";
   }
   return (
+    <ErrorBoundary>
     <Background>
       <Logo />
       <Button
@@ -65,5 +66,6 @@ export default function SettingsScreen({ route, navigation }) {
       </Button>
      
     </Background>
+    </ErrorBoundary>
   )
 }

@@ -6,7 +6,7 @@ const server = "http://192.168.1.73:1337";
 
 export default function fetchFromApi(typeOf, user="") {
   const [data, setData] = React.useState([]);  	
-    
+  
   React.useEffect(() => {
     const getApiEndpoint = "/api/"+ typeOf + "/" + user;
     fetch(server + getApiEndpoint, {
@@ -20,8 +20,15 @@ export default function fetchFromApi(typeOf, user="") {
         setData(data.data)
       })
       .catch((error) => {
-        console.log(error);
+        if (err.name === 'AbortError') {
+          console.log('successfully aborted');
+        } else {
+          console.log(error);
+        }
       })
+      return function cleanup() {
+        setData({data:null})
+    }
   }, [])
 
   return data;

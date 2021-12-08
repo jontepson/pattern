@@ -12,7 +12,8 @@ import { fetchFromApi } from '../hooks';
 import {
   Background,
   Button,
-  Footer
+  Footer,
+  ErrorBoundary
 } from '../components'
 import { returnBike } from '../functions/DriveFunctions';
 const server = "http://192.168.1.73:1337";
@@ -93,6 +94,7 @@ const DriveScreen = ({ route, navigation }) => {
   }, [])
 
   return (
+    <ErrorBoundary>
     <Background>
       <MapView
         style={styles.map}
@@ -122,7 +124,7 @@ const DriveScreen = ({ route, navigation }) => {
           onPress={() => alert("Parking zone")}>
           </Polygon>
         })}
-        <Text style={styles.header}>Din hastighet: {speed}</Text>
+        <Text style={styles.header}> Din hastighet: {speed}</Text>
       </MapView>
       <Button
         mode="contained"
@@ -131,6 +133,7 @@ const DriveScreen = ({ route, navigation }) => {
       </Button>
       
     </Background>
+    </ErrorBoundary>
   )
 }
 

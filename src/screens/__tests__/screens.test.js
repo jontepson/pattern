@@ -2,14 +2,12 @@
 import React from 'react';
 import renderer, { act } from 'react-test-renderer';
 
-import Enzyme, { shallow, mount } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {
     StartScreen,
     LoginScreen,
     CameraScreen,
-    LoggedInScreen,
-    MapScreen,
     DriveScreen,
     MapScreen2,
     SettingsScreen
@@ -21,10 +19,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('<Screens />', () => {
     let tree;
     let component;
-    let instance;
-    let spy;
     it('<StartScreen /> renders correctly', async () => {
-        const tree = await renderer.create(<StartScreen />).toJSON();
         /**
          * Skriv tester för att testa knappar
          */
@@ -45,7 +40,6 @@ describe('<Screens />', () => {
     });
 
     it('<SettingsScreen  /> renders correctly', async () => {
-        const tree = await renderer.create(<SettingsScreen  />).toJSON();
         /**
          * Skriv tester för att testa knappar
          */
@@ -69,7 +63,7 @@ describe('<Screens />', () => {
         expect(button4.simulate("press")).toEqual({});
         //expect(tree).toMatchSnapshot();
     });
-    it('<DriveScreen /> renders correctly', () => {
+    it('<DriveScreen /> renders correctly', async () => {
         act(() => {
             
            tree = renderer.create(<DriveScreen />).toJSON();
@@ -78,16 +72,22 @@ describe('<Screens />', () => {
     });
 
     it('<MapScreen2 /> renders correctly', async () => {
-        let test = await renderer.create(<MapScreen2 />).toJSON();
+        act(() => {
+            test = renderer.create(<MapScreen2 />).toJSON();
+        })
         expect(test).toMatchSnapshot();
     });
     it('<MapScreen2 /> buttons', async () => {
-        component = shallow(<MapScreen2 />)
-        const button1 = component.find(".camera")
+        let button1
+        act(() => {
+            component = shallow(<MapScreen2 />)
+            button1 = component.find(".camera")
+        })
+        
         expect(button1.simulate("press")).toEqual({});
     });
    
-    it('<CameraScreen /> renders correctly',  () => {
+    it('<CameraScreen /> renders correctly', async () => {
         act(() => {
             tree = renderer.create(<CameraScreen navigation={"StartScreen"}/>).toJSON();
         })

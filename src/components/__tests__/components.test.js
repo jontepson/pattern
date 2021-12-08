@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import renderer, { act } from 'react-test-renderer';
 
 import Background from '../Background';
 import BackButton from '../BackButton';
@@ -11,43 +11,67 @@ import Paragraph from '../Paragraph';
 import TextInput from '../TextInput';
 
 describe('<Components />', () => {
-    it('<Background /> renders correctly', () => {
-        const tree = renderer.create(<Background />).toJSON();
+    it('<Background /> renders correctly', async () => {
+        let tree;
+        act(() => {
+            tree = renderer.create(<Background />).toJSON();
+        })
         expect(tree).toMatchSnapshot();
     });
 
-    it('<BackButton /> renders correctly', () => {
-        const tree = renderer.create(<BackButton />).toJSON();
+    it('<BackButton /> renders correctly', async () => {
+        let tree;
+        act(() => {
+            tree = renderer.create(<BackButton />).toJSON();
+        })
         expect(tree).toMatchSnapshot();
     });
 
-    it('<Button /> renders correctly', () => {
-        const tree = renderer.create(<Button />).toJSON();
+    it('<Button /> renders correctly', async () => {
+        let tree;
+        act(() => {
+            tree = renderer.create(<Button />).toJSON();
+        })
         expect(tree).toMatchSnapshot();
     });
 
-    it('<Footer /> renders correctly', () => {
-        const tree = renderer.create(<Footer />).toJSON();
+    it('<Footer /> renders correctly', async () => {
+        let tree;
+        act(() => {
+            tree = renderer.create(<Footer />).toJSON();
+        })
         expect(tree).toMatchSnapshot();
     });
 
-    it('<Header /> renders correctly', () => {
-        const tree = renderer.create(<Header />).toJSON();
+    it('<Header /> renders correctly', async () => {
+        let tree;
+        act(() => {
+            tree = renderer.create(<Header />).toJSON();
+        })
         expect(tree).toMatchSnapshot();
     });
 
-    it('<Logo /> renders correctly', () => {
-        const tree = renderer.create(<Logo />).toJSON();
+    it('<Logo /> renders correctly', async () => {
+        let tree;
+        act(() => {
+            tree = renderer.create(<Logo />).toJSON();
+        })
         expect(tree).toMatchSnapshot();
     });
 
-    it('<Paragraph /> renders correctly', () => {
-        const tree = renderer.create(<Paragraph />).toJSON();
+    it('<Paragraph /> renders correctly', async () => {
+        let tree;
+        act(() => {
+            tree = renderer.create(<Paragraph />).toJSON();
+        })
         expect(tree).toMatchSnapshot();
     });
 
-    it('<TextInput /> renders correctly', () => {
-        const tree = renderer.create(<TextInput />).toJSON();
+    it('<TextInput /> renders correctly', async () => {
+        let tree;
+        act(() => {
+            tree = renderer.create(<TextInput />).toJSON();
+        })
         expect(tree).toMatchSnapshot();
     });
   });

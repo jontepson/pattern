@@ -5,7 +5,7 @@ import {
     fetchBikesApi,
     fetchCitiesApi,
     fetchUserApi
-} from '../'
+} from '..'
 
 
 describe('Test mocking fetch functions', () => {
