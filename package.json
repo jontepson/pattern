@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "testTravis": "jest -- -u --forceExit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
