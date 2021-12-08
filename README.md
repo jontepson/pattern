@@ -20,3 +20,9 @@
 }
 
 !redirect_uri används inte, kolla på src/screens/LoginScreen vid useAuthRequest för nuvarande config redirect_uri
+
+[![Build Status](https://app.travis-ci.com/jontepson/pattern.svg?branch=main)](https://app.travis-ci.com/jontepson/pattern)
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jontepson/pattern/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/jontepson/pattern/?branch=main)
+
+[![Build Status](https://scrutinizer-ci.com/g/jontepson/pattern/badges/build.png?b=main)](https://scrutinizer-ci.com/g/jontepson/pattern/build-status/main)
