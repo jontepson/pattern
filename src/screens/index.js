@@ -1,8 +1,6 @@
 export { default as StartScreen } from './StartScreen'
 export { default as LoginScreen } from './LoginScreen'
 export { default as CameraScreen } from './CameraScreen'
-export { default as LoggedInScreen } from './LoggedInScreen'
-export { default as MapScreen } from './MapScreen'
 export { default as DriveScreen } from './DriveScreen'
 export { default as MapScreen2 } from './MapScreen2'
 export { default as SettingsScreen } from './SettingsScreen'
