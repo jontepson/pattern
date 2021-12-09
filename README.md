@@ -9,6 +9,10 @@
 ## expo install
 ## expo start
 ## Appen kan köras i Expo Go
+
+Expo clienten behövs om du inte redan har den,
+### npm install --global expo-cli 
+löser det
 ## Detta projekt innehåller en config.json fil i src/config/
 
 ## Innehållet är
