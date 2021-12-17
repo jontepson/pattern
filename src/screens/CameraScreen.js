@@ -12,18 +12,15 @@ import {
   Logo,
   BackButton,
   Header,
-  Footer,
   ErrorBoundary
 } from '../components'
 import { rentBikeAlert } from '../functions/CameraFunctions';
-import { logDataHook } from '../hooks';
 /**
  * Karta
  * Sin egen position
  */
 const { width } = Dimensions.get('window');
 const qrSize = width * 0.7;
-const server = "http://192.168.1.73:1337";
 
 export default function CameraScreen({ route, navigation }) {
   const [hasPermission, setHasPermission] = useState(null);

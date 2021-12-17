@@ -11,8 +11,6 @@ import { AntDesign } from '@expo/vector-icons';
 import { warmUpBrowser } from '../hooks';
 import {
   Background,
-  Button,
-  Footer,
   BackButton,
   Header,
   ErrorBoundary
@@ -65,25 +63,25 @@ export default function LoginScreen({ navigation }) {
           body: JSON.stringify(body)
         }).then((response) => response.json())
           .then((data) => {
-            if (data.access_token) {
-              const authUrl = "https://api.github.com/user";
-              fetch(authUrl, {
-                method: "GET",
-                headers: {
-                  Authorization: "token " + data.access_token
-                }
-              }).then((response) => response.json())
-                .then((data) => {
-                  LoginUser(data.login)
-                })
-                .catch((error) => {
-                  console.error(error);
-                })
-            } else {
-              alert("Något gick fel med inloggningen")
+            if (!data.access_token) {
+              throw "No data access token found"
             }
+            const authUrl = "https://api.github.com/user";
+            fetch(authUrl, {
+              method: "GET",
+              headers: {
+                Authorization: "token " + data.access_token
+              }
+            }).then((response) => response.json())
+              .then((data) => {
+                LoginUser(data.login)
+              })
+              .catch((error) => {
+                console.error(error);
+              })
           })
           .catch((error) => {
+            alert("Något gick fel med inloggningen")
             console.error(error);
           });
       }

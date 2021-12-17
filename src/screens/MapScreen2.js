@@ -5,17 +5,15 @@
  */
 
 import React from 'react';
-import MapView, { Marker, Polygon } from 'react-native-maps'
+import MapView, { Marker } from 'react-native-maps'
 import { Dimensions, StyleSheet } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { theme } from '../core/theme';
-import { logDataHook, fetchFromApi } from '../hooks';
+import {  fetchFromApi } from '../hooks';
 import {
   SettingsButton,
   Button,
   Background,
-  Footer,
   ErrorBoundary
 } from '../components'
 
@@ -30,7 +28,6 @@ export default function MapScreen2({ route, navigation }) {
     userData = fetchFromApi("customers", route.params.data.data.user.id);
   } catch (error) {
     userData = fetchFromApi( "customers", "tester" );
-    _id = "ThisIsA_IdThatIsUsedIfUserAintLogginin"
   }
   return (
     <ErrorBoundary>
@@ -51,10 +48,9 @@ export default function MapScreen2({ route, navigation }) {
           <Marker
           key={index}
           coordinate={{ latitude: parseFloat(marker.position.lat), longitude: parseFloat(marker.position.lng) }}
-          title={"Bike " + marker._id + " " + marker.city_location}
+          title={"Bike " + marker._id}
           description={"Battery: " + marker.battery.toString()}
           >
-               {/*<FontAwesome5 name="atlassian" size={20} style={styles.logo}/>*/}
                <MaterialIcons name="electric-scooter" size={20} style={styles.logo} />
           </Marker>
         ))}

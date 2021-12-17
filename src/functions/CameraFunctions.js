@@ -28,39 +28,37 @@
     //const specific_bike_endpoint = "/api/scooter/619df218cf19506c715c5c90"
     if(process.env.NODE_ENV !== "test") {
     try {
-      if (userData.balance > 0) {
-        fetch(server + specific_bike_endpoint, {
-          method: "GET",
-          headers: {
-            Accept: 'application/json',
-            'Content-type': 'application/json'
-          }
-        }).then((response) => response.json())
-          .then((data) => {
-            const loggObject = {
-              _id: data.data[0]._id,
-              active_user: userData.username,
-              event: "Testkörning i App",
-              start_lat: data.data[0].position.lat,
-              start_lng: data.data[0].position.lng,
-              start_time: dateTime,
-              end_lat: "",
-              end_lng: "",
-              end_time: ""
-            }
-            if (data.data[0].battery > 0) {
-                startBike(loggObject, data, userData, navigation);
-            } else {
-              alert("Batterifel")
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            alert("Du kan inte hyra denna cykel")
-          })
-      } else {
-        alert("Du har inga pengar på kontot, besök mina sidor för att fylla på")
+      if (userData.balance < 0) {
+        throw "Inga pengar på kontot"
       }
+      fetch(server + specific_bike_endpoint, {
+        method: "GET",
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json'
+        }
+      }).then((response) => response.json())
+        .then((data) => {
+          const loggObject = {
+            _id: data.data[0]._id,
+            active_user: userData.username,
+            event: "Testkörning i App",
+            start_lat: data.data[0].position.lat,
+            start_lng: data.data[0].position.lng,
+            start_time: dateTime,
+            end_lat: "",
+            end_lng: "",
+            end_time: ""
+          }
+          if (data.data[0].battery <= 0) {
+            throw "Batterifel"
+          }
+          startBike(loggObject, data, userData, navigation);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert(error)
+        })
     } catch (error) {
       console.log("This user is shady")
     }

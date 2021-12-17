@@ -17,7 +17,6 @@ export default function SettingsScreen({ route, navigation }) {
     user = route.params.user;
   } catch (error) {
     user = "tester";
-    token = "tester";
   }
   return (
     <ErrorBoundary>

@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5cd7bc0-9c8d-49a4-a45b-322ee8813d3c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TextInput.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/CameraFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/CameraFunctions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/CameraScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CameraScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoginScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/MapScreen2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MapScreen2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SettingsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SettingsScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
