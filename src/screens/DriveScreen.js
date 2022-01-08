@@ -5,6 +5,7 @@
  * 
  */
 import React, { useEffect, useState } from 'react'
+import fetch from 'node-fetch'
 import { theme } from '../core/theme'
 import { Text, StyleSheet, Dimensions, Alert } from 'react-native'
 import MapView, { Polyline, Polygon } from 'react-native-maps';
