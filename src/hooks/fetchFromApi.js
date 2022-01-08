@@ -12,11 +12,12 @@ export default function fetchFromApi(typeOf, user="") {
     fetch(server + getApiEndpoint, {
       method: "GET",
       headers: {
-        Accept: 'application/json',
+        Accept: '*/*',
         'Content-type': 'application/json'
       }
     }).then((response) => response.json())
       .then((data) => {
+        console.log(data)
         setData(data.data)
       })
       .catch((error) => {

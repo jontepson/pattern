@@ -17,7 +17,7 @@
      * Kolla om cykeln finns eller inte
      * Om den finns ska detta gå igenom, finns den inte så ska den visa något error
      */
-    var dateTime = moment().format('YYYY-MM-DD, h:mm:ss');
+    var dateTime = moment().format('hh:mm');
     /*
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();

@@ -15,7 +15,7 @@
     /***
      * lämna tillbaka cykel
      */
-    var dateTime = moment().format('YYYY-MM-DD, h:mm:ss');
+    var dateTime = moment().format('hh:mm');
     /*
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();

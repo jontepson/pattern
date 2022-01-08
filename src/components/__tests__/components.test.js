@@ -8,7 +8,7 @@ import Footer from '../Footer';
 import Header from '../Header';
 import Logo from '../Logo';
 import Paragraph from '../Paragraph';
-import TextInput from '../TextInput';
+
 
 describe('<Components />', () => {
     it('<Background /> renders correctly', async () => {
@@ -63,14 +63,6 @@ describe('<Components />', () => {
         let tree;
         act(() => {
             tree = renderer.create(<Paragraph />).toJSON();
-        })
-        expect(tree).toMatchSnapshot();
-    });
-
-    it('<TextInput /> renders correctly', async () => {
-        let tree;
-        act(() => {
-            tree = renderer.create(<TextInput />).toJSON();
         })
         expect(tree).toMatchSnapshot();
     });

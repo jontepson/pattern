@@ -13,5 +13,3 @@ exports[`<Components /> <Header /> renders correctly 1`] = `null`;
 exports[`<Components /> <Logo /> renders correctly 1`] = `null`;
 
 exports[`<Components /> <Paragraph /> renders correctly 1`] = `null`;
-
-exports[`<Components /> <TextInput /> renders correctly 1`] = `null`;

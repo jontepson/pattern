@@ -2,8 +2,8 @@
  * Module for login screen
  * Use github login
  */
-import React, { useState, useEffect } from 'react'
-import { TouchableOpacity, StyleSheet, View} from 'react-native'
+import React, { useEffect } from 'react'
+import { StyleSheet } from 'react-native'
 import * as WebBrowser from 'expo-web-browser';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { theme } from '../core/theme';
@@ -18,13 +18,18 @@ import {
 
 const server = "http://192.168.1.73:1337";
 let config;
+
 try {
   config = require("../config/config.json");
+  if (process.env.NODE_ENV === "development") {
+    config = require("../config/configDev.json")
+  }
 } catch (error) {
   console.log(error)
 }
 let clientId = process.env.CLIENTID || config.clientId;
 let clientSecret = process.env.CLIENTSECRET || config.clientSecret
+//alert(process.env.NODE_ENV)
 const discovery = {
   authorizationEndpoint: 'https://github.com/login/oauth/authorize',
   tokenEndpoint: 'https://github.com/login/oauth/access_token',
@@ -32,6 +37,10 @@ const discovery = {
 };
 
 WebBrowser.maybeCompleteAuthSession();
+let isProxy = true
+if (process.env.NODE_ENV === "development") {
+  isProxy = false
+}
 export default function LoginScreen({ navigation }) {
  warmUpBrowser()
   
@@ -39,12 +48,12 @@ export default function LoginScreen({ navigation }) {
       {
         clientId: clientId,
         scopes: ['identity'],
-        redirectUri: makeRedirectUri({ useProxy: false })
+        redirectUri: makeRedirectUri({ useProxy: isProxy })
       },
       discovery
     );
-
     useEffect(() => {
+      
       if (response?.type === 'success') {
         const { code } = response.params;
         const body = {
@@ -63,9 +72,7 @@ export default function LoginScreen({ navigation }) {
           body: JSON.stringify(body)
         }).then((response) => response.json())
           .then((data) => {
-            if (!data.access_token) {
-              throw "No data access token found"
-            }
+    
             const authUrl = "https://api.github.com/user";
             fetch(authUrl, {
               method: "GET",
@@ -74,14 +81,18 @@ export default function LoginScreen({ navigation }) {
               }
             }).then((response) => response.json())
               .then((data) => {
+        
                 LoginUser(data.login)
               })
               .catch((error) => {
+                alert(error)
+                console.log("3")
                 console.error(error);
               })
           })
           .catch((error) => {
             alert("Något gick fel med inloggningen")
+            console.log("2")
             console.error(error);
           });
       }
@@ -93,7 +104,6 @@ export default function LoginScreen({ navigation }) {
    * Do some check if user is in register or not. 
    * 
  */
-  
   /**
    * 
    * @param {*} username 
@@ -113,16 +123,18 @@ export default function LoginScreen({ navigation }) {
       body: JSON.stringify(body)
     }).then((response) => response.json())
       .then((data) => {
+
         navigation.navigate('MapScreen2', { data: data })
       })
       .catch((error) => {
         alert(error)
-        //console.log(error);
+        console.log(error);
       })
   }
 
 
-  let redirectUri = makeRedirectUri({ useProxy: false })
+  let redirectUri = makeRedirectUri({ useProxy: isProxy })
+  //console.log(redirectUri)
   return (
     <ErrorBoundary>
     <Background>
