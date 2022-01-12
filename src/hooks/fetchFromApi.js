@@ -17,11 +17,10 @@ export default function fetchFromApi(typeOf, user="") {
       }
     }).then((response) => response.json())
       .then((data) => {
-        console.log(data)
         setData(data.data)
       })
       .catch((error) => {
-        if (err.name === 'AbortError') {
+        if (error.name === 'AbortError') {
           console.log('successfully aborted');
         } else {
           console.log(error);

@@ -7,13 +7,12 @@
 import React, { useEffect, useState } from 'react'
 import fetch from 'node-fetch'
 import { theme } from '../core/theme'
-import { Text, StyleSheet, Dimensions, Alert } from 'react-native'
+import { Text, StyleSheet, Dimensions } from 'react-native'
 import MapView, { Polyline, Polygon } from 'react-native-maps';
 import { fetchFromApi } from '../hooks';
 import {
   Background,
   Button,
-  Footer,
   ErrorBoundary
 } from '../components'
 import { returnBike } from '../functions/DriveFunctions';
@@ -82,7 +81,8 @@ const DriveScreen = ({ route, navigation }) => {
         method: "PUT",
         headers: {
           Accept: 'application/json',
-          'Content-type': 'application/json'
+          'Content-type': 'application/json',
+          "x-access-token": global.token
         },
         body: JSON.stringify(body)
         }).then((response) => response.json())
@@ -122,7 +122,7 @@ const DriveScreen = ({ route, navigation }) => {
           strokeColor={theme.colors.secondary}
           fillColor={theme.colors.secondary}
           tappable={true}
-          onPress={() => alert("Parking zone")}>
+          onPress={() => console.log("parkingzone")}>
           </Polygon>
         })}
         <Text style={styles.header}> Din hastighet: {speed}</Text>

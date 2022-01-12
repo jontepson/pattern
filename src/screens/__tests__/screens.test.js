@@ -73,9 +73,9 @@ describe('<Screens />', () => {
 
     it('<MapScreen2 /> renders correctly', async () => {
         act(() => {
-            test = renderer.create(<MapScreen2 />).toJSON();
+            component = renderer.create(<MapScreen2 />).toJSON();
         })
-        expect(test).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
     });
     it('<MapScreen2 /> buttons', async () => {
         let button1

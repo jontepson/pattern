@@ -3,7 +3,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, Button, Alert } from 'react-native';
+import { Text, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Constants from 'expo-constants';
 import { Dimensions } from 'react-native';
@@ -43,6 +43,7 @@ export default function CameraScreen({ route, navigation }) {
    */
    const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
+    console.log(type)
     rentBikeAlert(data, route.params.userData, navigation)
   };
 

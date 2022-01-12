@@ -2,6 +2,7 @@
  * Module for startscreen
  */
 import React from 'react'
+//import moment from "moment";
 import {
   Background,
   Logo,
@@ -10,6 +11,7 @@ import {
 } from '../components'
 export default function StartScreen({ navigation }) {
   //console.log(process.env.NODE_ENV)
+  //console.log(moment().format('YYYY-MM-DD hh:mm'))
   return (
     <ErrorBoundary>
     <Background>

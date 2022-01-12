@@ -1,5 +1,6 @@
 module.exports = {
     "env": {
+        "jest": true,
         "es2021": true,
         "node": true
     },
@@ -17,6 +18,8 @@ module.exports = {
     "plugins": [
         "react"
     ],
+    "ignorePatterns": ["src/screens/LoggedInScreen.js", "src/screens/MapScreen.js"],
     "rules": {
+        "react/prop-types": "off"
     }
 };

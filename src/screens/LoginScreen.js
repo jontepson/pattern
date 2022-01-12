@@ -9,6 +9,7 @@ import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { theme } from '../core/theme';
 import { AntDesign } from '@expo/vector-icons';
 import { warmUpBrowser } from '../hooks';
+import fetch from 'node-fetch'
 import {
   Background,
   BackButton,
@@ -37,10 +38,8 @@ const discovery = {
 };
 
 WebBrowser.maybeCompleteAuthSession();
-let isProxy = true
-if (process.env.NODE_ENV === "development") {
-  isProxy = false
-}
+let isProxy = false
+
 export default function LoginScreen({ navigation }) {
  warmUpBrowser()
   
@@ -53,7 +52,6 @@ export default function LoginScreen({ navigation }) {
       discovery
     );
     useEffect(() => {
-      
       if (response?.type === 'success') {
         const { code } = response.params;
         const body = {
@@ -85,14 +83,10 @@ export default function LoginScreen({ navigation }) {
                 LoginUser(data.login)
               })
               .catch((error) => {
-                alert(error)
-                console.log("3")
                 console.error(error);
               })
           })
           .catch((error) => {
-            alert("Något gick fel med inloggningen")
-            console.log("2")
             console.error(error);
           });
       }
@@ -123,11 +117,10 @@ export default function LoginScreen({ navigation }) {
       body: JSON.stringify(body)
     }).then((response) => response.json())
       .then((data) => {
-
+        global.token = data.data.token;
         navigation.navigate('MapScreen2', { data: data })
       })
       .catch((error) => {
-        alert(error)
         console.log(error);
       })
   }

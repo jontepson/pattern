@@ -23,7 +23,6 @@ export default function MapScreen2({ route, navigation }) {
   //const bikeData = fetchBikesApi();
   const bikeData = fetchFromApi("scooter") 
   let userData;
-  
   try {
     userData = fetchFromApi("customers", route.params.data.data.user.id);
   } catch (error) {

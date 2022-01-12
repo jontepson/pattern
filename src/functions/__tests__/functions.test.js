@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer, { act } from 'react-test-renderer';
 
-import Enzyme, { shallow, mount } from 'enzyme';
+import { act } from 'react-test-renderer';
+
+import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { rentBikeAlert, RentABike, startBike } from '../CameraFunctions';
 import { returnBike } from '../DriveFunctions';
@@ -78,7 +78,6 @@ describe('<Function test />', () => {
         it('<returnBike is /> is called correctly', async () => {
             let mockCallback;
             act(() => {
-                let id = "31231232123213"
                 let userData = {
                     data: "data"
                 }

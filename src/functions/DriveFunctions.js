@@ -25,13 +25,15 @@
     loggObject.end_lat = latitude;
     loggObject.end_lng = longitude;
     loggObject.end_time = dateTime;
+    console.log(loggObject)
     // insert Logg to bike
     const api_insertLogg_endpoint = "/api/scooter/insertLogg";
     fetch(server + api_insertLogg_endpoint, {
       method: "PUT",
       headers: {
         Accept: 'application/json',
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        "x-access-token": global.token
       },
       body: JSON.stringify(loggObject)
       }).then((response) => response.json())
@@ -47,7 +49,8 @@
       method: "PUT",
       headers: {
         Accept: 'application/json',
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        "x-access-token": global.token
       },
       body: JSON.stringify(setUser_body)
       }).then((response) => response.json())
@@ -73,7 +76,8 @@
       method: "PUT",
       headers: {
         Accept: 'application/json',
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        "x-access-token": global.token
       },
       body: JSON.stringify(setTrip_body)
       }).then((response) => response.json())
@@ -91,7 +95,8 @@
       method: "PUT",
       headers: {
         Accept: 'application/json',
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        "x-access-token": global.token
       },
       body: JSON.stringify(setBalance_body)
       }).then((response) => response.json())

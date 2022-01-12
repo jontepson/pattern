@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import Paragraph from './Paragraph'
 
-export default function Header(props) {
+export default function Header() {
   return <Paragraph style={styles.footer}>
   By Svenska Elsparkcyklar AB
   </Paragraph>

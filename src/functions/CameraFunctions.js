@@ -17,7 +17,7 @@
      * Kolla om cykeln finns eller inte
      * Om den finns ska detta gå igenom, finns den inte så ska den visa något error
      */
-    var dateTime = moment().format('hh:mm');
+    var dateTime = moment().format('YYYY-MM-DD hh:mm');
     /*
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -35,7 +35,8 @@
         method: "GET",
         headers: {
           Accept: 'application/json',
-          'Content-type': 'application/json'
+          'Content-type': 'application/json',
+          "x-access-token": global.token
         }
       }).then((response) => response.json())
         .then((data) => {
@@ -57,7 +58,6 @@
         })
         .catch((error) => {
           console.log(error);
-          alert(error)
         })
     } catch (error) {
       console.log("This user is shady")
@@ -86,12 +86,12 @@
       _id: data.data[0]._id,
       active_user: userData.username
     }
-
     fetch(server + api_setuser_endpoint, {
       method: "PUT",
       headers: {
         Accept: 'application/json',
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        "x-access-token": global.token
       },
       body: JSON.stringify(setUser_body)
     }).then((response) => response.json())
@@ -103,7 +103,8 @@
       method: "PUT",
       headers: {
         Accept: 'application/json',
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        "x-access-token": global.token
       },
       body: JSON.stringify(startBike_body)
     }).then((response) => response.json())
@@ -111,7 +112,6 @@
         console.log(error);
       })
       if(process.env.NODE_ENV !== "test") {
-      alert("Cykel med id: " + data.data[0]._id + " är nu din, happy driving")
         navigation.navigate('DriveScreen', { loggObject: loggObject, battery: data.data[0].battery, userData: userData })
       }
   }
