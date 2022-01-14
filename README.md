@@ -12,10 +12,12 @@ Pga Apples inställningar så funkar denna länken endast på Android.
 
 Ladda ner koden
 Gå till rooten
+```
 npm install
 expo install
 expo start
-Appen kan köras i Expo Go på antingen din mobil eller 
+```
+Appen kan köras i Expo Go på antingen din mobil eller en emulator
 
 Expo clienten behövs om du inte redan har den,
 ```
@@ -28,9 +30,9 @@ Detta projekt innehåller en config.json fil och en configDev.json i src/config/
 ### Innehållet är
 ```
 { 
-  "clientId": "Github client ID",
-  "clientSecret": "Github client Secret",
-  "redirect_uri": "Github client redirect uri"
+  "clientId": "Github client ID DEV",
+  "clientSecret": "Github client Secret DEVE",
+  "redirect_uri": "Github client redirect uri DEV"
 }
 ```
 Detta behövs då den är publicerad men även ska kunna köra lokalt. Mer info finns
