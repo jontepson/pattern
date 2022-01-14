@@ -7,6 +7,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/jontepson/pattern/badges/build.png?b=main)](https://scrutinizer-ci.com/g/jontepson/pattern/build-status/main)
 
 ### Projektet kan testas på https://expo.dev/@jontepson/pattern-app
+Den lyssnar på en server, port 1337 som finns att ladda ner [Här](https://github.com/alexander97olsson/Scooter-API)
 Pga Apples inställningar så funkar denna länken endast på Android.
 
 Ladda ner koden
